@@ -2,6 +2,8 @@ from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from .locators import ProductPageLocators
 import math
+from selenium import webdriver
+from selenium.common.exceptions import NoAlertPresentException
 
 class ProductPage(BasePage):
 
@@ -10,6 +12,7 @@ class ProductPage(BasePage):
         basket_button.click()
     
     def solve_quiz_and_get_code(self):
+        self.browser.implicitly_wait(5)
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
@@ -26,8 +29,7 @@ class ProductPage(BasePage):
     def should_be_msg_about_adding(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         message = self.browser.find_element(*ProductPageLocators.MESSAGE_ABOUT_ADDING).text
-
-        assert product_name in message, "Product name not found on message"
+        assert product_name == message, "Product name not found on message"
         
     def compare_basket_and_product_price(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
