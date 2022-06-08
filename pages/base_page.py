@@ -1,4 +1,5 @@
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
 
 class BasePage():
     def __init__(self,browser,url):
@@ -17,4 +18,6 @@ class BasePage():
             self.browser.find_element(how, what)
         except (NoSuchElementException):
             return False
-        return True           
+        return True
+
+           
