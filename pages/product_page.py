@@ -4,7 +4,8 @@ from .locators import ProductPageLocators
 import math
 
 class ProductPage(BasePage):
-    def should_be_basket_button(self):
+
+    def find_basket_button(self):
         basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
         basket_button.click()
     
@@ -22,4 +23,16 @@ class ProductPage(BasePage):
         except NoAlertPresentException:
             print 
   
+    def should_be_msg_about_adding(self):
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        message = self.browser.find_element(*ProductPageLocators.MESSAGE_ABOUT_ADDING).text
+
+        assert product_name in message, "Product name not found on message"
         
+    def compare_basket_and_product_price(self):
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        basket_price = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_TOTAL).text
+
+        assert product_price == basket_price, "Product price and basket price is not equal"
+        
+    
