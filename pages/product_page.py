@@ -36,5 +36,4 @@ class ProductPage(BasePage):
         basket_price = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_TOTAL).text
 
         assert product_price == basket_price, "Product price and basket price is not equal"
-        
     
