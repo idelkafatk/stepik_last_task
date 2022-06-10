@@ -22,3 +22,7 @@ class BasePageLocators():
     BASKET_LINK = (By.CSS_SELECTOR, "span.btn-group a")
     NO_ITEMS = (By.CSS_SELECTOR, "div.content") 
     MESSAGE_NO_ITEMS = (By.CSS_SELECTOR, "div.content p")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")  
+    EMAIL = (By.NAME, "registration-email")
+    PASSWORD = (By.NAME, "registration-password1")
+    PASSWORD_2 = (By.NAME, "registration-password2")
